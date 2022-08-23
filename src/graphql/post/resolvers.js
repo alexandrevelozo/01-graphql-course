@@ -1,25 +1,11 @@
-const post = () => {
-  return {
-    id: '1',
-    title: 'GraphQL é uma linguagem de programação',
-  };
+const posts = async (_, __, { getPosts }) => {
+  const posts = await getPosts();
+  return posts.json();
 };
 
-const posts = () => {
-  return [
-    {
-      id: '1',
-      title: 'GraphQL é uma linguagem de programação',
-    },
-    {
-      id: '2',
-      title: 'Apollo é uma biblioteca para GraphQL',
-    },
-    {
-      id: '3',
-      title: 'Apollo é uma biblioteca para GraphQL',
-    },
-  ];
+const post = async (_, { id }, { getPosts }) => {
+  const post = await getPosts('/' + id);
+  return post.json();
 };
 
 export const postResolvers = {
