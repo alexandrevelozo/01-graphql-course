@@ -1,0 +1,32 @@
+# Aliases
+query GET_POST {
+  post860: post(id: "860") {
+    id
+    title
+    body
+    indexRef
+    createdAt
+  }
+  post342: post(id: "342") {
+    id
+    title
+  }
+}
+
+# Fragments - igual uma variável que armazena um fragmento de uma query
+fragment post on Post {
+  id
+  title
+  body
+  indexRef
+  createdAt
+}
+
+query GET_POST {
+  post1: post(id: "860") {
+    ...post
+  }
+  post2: post(id: "342") {
+    ...post
+  }
+}
