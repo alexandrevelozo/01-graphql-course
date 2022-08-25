@@ -1,5 +1,6 @@
-const posts = async (_, __, { getPosts }) => {
-  const posts = await getPosts();
+const posts = async (_, { input }, { getPosts }) => {
+  const apiFiltersInput = new URLSearchParams(input);
+  const posts = await getPosts(`/?${apiFiltersInput}`);
   return posts.json();
 };
 
@@ -12,5 +13,11 @@ export const postResolvers = {
   Query: {
     post,
     posts,
+  },
+  Post: {
+    unixTimestamp: () => {
+      const date = new Date().getTime() / 1000;
+      return Math.floor(date);
+    },
   },
 };
