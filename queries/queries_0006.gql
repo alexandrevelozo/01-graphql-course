@@ -1,0 +1,20 @@
+# Union Type
+query GET_POST {
+  post1: post(id: "860") {
+    __typename
+
+    ... on Post {
+      id
+      title
+      body
+      indexRef
+      createdAt
+      unixTimestamp
+    }
+
+    ... on PostNotFoundError {
+      statusCode
+      message
+    }
+  }
+}
