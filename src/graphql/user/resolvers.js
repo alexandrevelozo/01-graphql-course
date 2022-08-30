@@ -5,8 +5,9 @@ const users = async (_, { input }, { getUsers }) => {
 };
 
 const user = async (_, { id }, { getUsers }) => {
-  const user = await getUsers('/' + id);
-  return user.json();
+  const response = await getUsers('/' + id);
+  const user = await response.json();
+  return user;
 };
 
 export const userResolvers = {
